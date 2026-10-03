@@ -13,7 +13,7 @@ export default function Hero() {
         <h1 className="font-humingson text-6xl md:text-7xl lg:text-9xl leading-[0.95] text-[#f3ead8] text-center [text-shadow:3px_3px_0_#d63c2f]">
           Hiddenhall
         </h1>
-        <p className="font-traffic text-3xl md:text-3xl lg:text-4xl text-white mt-2 tracking-widest uppercase text-center">
+        <p className="font-brush text-3xl md:text-3xl lg:text-4xl text-white mt-2 tracking-widest uppercase text-center">
           Tattoo Studio
         </p>
         <p className="font-body mt-6 max-w-md mx-auto text-center text-white md:text-sm lg:text-base">

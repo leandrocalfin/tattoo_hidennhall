@@ -5,6 +5,9 @@ import Reviews from "@/components/Reviews";
 import Footer from "@/components/Footer";
 import Gallery from "@/components/Gallery";
 
+const SECTION_TITLE =
+  "font-humingson title-glow text-5xl md:text-5xl lg:text-6xl text-center text-neutral-100 mb-12";
+
 const services = [
   {
     title: "Tatuajes Realistas",
@@ -86,7 +89,7 @@ export default function Home() {
       </section>
 
       <section id="estudio" className="scroll-mt-8 px-6 py-20 max-w-5xl mx-auto">
-        <h2 className="font-humingson title-glow text-5xl md:text-5xl lg:text-6xl text-neutral-100 mb-6 text-center">Nuestro Espacio</h2>
+        <h2 className={SECTION_TITLE}>Nuestro Espacio</h2>
         <p className="sm:hidden font-subtitle subtitle-stroke text-3xl mb-8 text-center leading-tight max-w-md mx-auto">
           Transformamos tus ideas y emociones en auténticas obras de arte.
         </p>
@@ -188,7 +191,7 @@ export default function Home() {
       </section>
 
       <section id="servicios" className="scroll-mt-8 px-6 py-20 max-w-7xl mx-auto">
-        <h2 className="font-humingson title-glow text-5xl md:text-5xl lg:text-6xl text-center text-neutral-100 mb-12">Servicios</h2>
+        <h2 className={SECTION_TITLE}>Servicios</h2>
         <div className="grid gap-4 md:gap-8 md:grid-cols-2">
           {services.map((s) => (
             <div key={s.title} className="relative overflow-hidden border border-neutral-800 rounded-md p-4 md:p-5 lg:p-8 hover:border-amber-500/50 hover:-translate-y-2 transition-all duration-300">
@@ -197,7 +200,7 @@ export default function Home() {
                 <div className="absolute inset-0 bg-gradient-to-r from-neutral-950 to-transparent" />
               </div>
               <div className="relative md:max-w-[58%]">
-                <h3 className="font-traffic text-xl md:text-2xl lg:text-3xl text-amber-500">{s.title}</h3>
+                <h3 className="font-brush text-xl md:text-2xl lg:text-3xl text-amber-500">{s.title}</h3>
                 <p className="font-body mt-2 md:mt-3 text-neutral-400 leading-relaxed text-justify text-xs md:text-sm lg:text-base">{s.desc}</p>
               </div>
             </div>
@@ -214,7 +217,7 @@ export default function Home() {
           data-no-reveal
           className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 opacity-[0.03] pointer-events-none"
         />
-        <h2 className="font-humingson title-glow text-5xl md:text-5xl lg:text-6xl text-center text-neutral-100 mb-6">Artistas</h2>
+        <h2 className={SECTION_TITLE}>Artistas</h2>
         <p className="font-body text-neutral-400 text-center max-w-2xl mx-auto mb-12">
           Conocé a los tatuadores de Hiddenhall, cada uno especializado en estilos distintivos y con una trayectoria impecable.
         </p>
@@ -224,7 +227,7 @@ export default function Home() {
               <div className="relative mx-auto h-36 w-36 md:h-44 md:w-44 rounded-full overflow-hidden border border-neutral-700 group-hover:border-amber-500/60 transition">
                 <Image src={a.photo} alt={a.name} fill className="object-cover group-hover:scale-105 transition duration-500" sizes="176px" />
               </div>
-              <h3 className="mt-4 font-traffic text-3xl md:text-2xl lg:text-3xl text-neutral-100 group-hover:text-amber-500 transition">{a.name}</h3>
+              <h3 className="mt-4 font-brush text-3xl md:text-2xl lg:text-3xl text-neutral-100 group-hover:text-amber-500 transition">{a.name}</h3>
               <p className="font-body text-neutral-400 text-xs mt-1 px-2">{a.style}</p>
               <div className="mt-2 flex items-center justify-center gap-3">
                 <a href={a.whatsapp} target="_blank" rel="noreferrer" aria-label={`WhatsApp de ${a.name}`} className="flex h-10 w-10 items-center justify-center rounded-full border border-neutral-700 text-amber-500 hover:border-amber-500 hover:scale-110 transition">
@@ -246,12 +249,12 @@ export default function Home() {
       </section>
 
       <section id="galeria" className="scroll-mt-8 px-6 py-20">
-        <h2 className="font-humingson title-glow text-5xl md:text-5xl lg:text-6xl text-center text-neutral-100 mb-12">Galería</h2>
+        <h2 className={SECTION_TITLE}>Galería</h2>
         <Gallery />
       </section>
 
       <section id="contacto" className="scroll-mt-8 px-6 py-20 max-w-6xl mx-auto">
-        <h2 className="font-humingson title-glow text-5xl md:text-5xl lg:text-6xl text-center text-neutral-100 mb-12">Contacto</h2>
+        <h2 className={SECTION_TITLE}>Contacto</h2>
         <div className="grid gap-12 md:grid-cols-2 items-center">
           <div>
             <p className="font-subtitle subtitle-stroke text-5xl md:text-5xl lg:text-6xl mb-6 text-center leading-tight pt-3 animate-pulse">Turnos disponibles</p>

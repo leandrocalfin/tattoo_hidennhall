@@ -31,11 +31,6 @@ const kgred = localFont({
   variable: "--nf-kgred",
   display: "block",
 });
-const traffic = localFont({
-  src: "../fonts/Traffic.woff2",
-  variable: "--nf-traffic",
-  display: "block",
-});
 const hackney = localFont({
   src: "../fonts/Hackney.woff2",
   variable: "--nf-hackney",
@@ -56,7 +51,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="es"
-      className={`${serif.variable} ${sans.variable} ${komika.variable} ${blackrush.variable} ${kgred.variable} ${traffic.variable} ${hackney.variable} ${kong.variable} h-full antialiased`}
+      className={`${serif.variable} ${sans.variable} ${komika.variable} ${blackrush.variable} ${kgred.variable} ${hackney.variable} ${kong.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-neutral-950 text-neutral-200 overflow-x-clip">{children}<ScrollReveal /></body>
     </html>
