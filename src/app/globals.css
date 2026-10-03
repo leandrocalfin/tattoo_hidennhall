@@ -5,83 +5,12 @@
   --color-neon-soft: #ff7aae;
   --font-sans: var(--font-sans);
   --font-serif: var(--font-serif);
-  --font-display: "Urban Heroes", sans-serif;
-  --font-komika: "Komika Axis", sans-serif;
-  --font-subtitle: "Blackrush", cursive;
-  --font-body: "KG Red Hands", cursive;
-  --font-brush: "Hackney", sans-serif;
-  --font-humingson: "Kong", sans-serif;
-  --font-traffic: "Traffic", sans-serif;
-}
-
-@font-face {
-  font-family: "Komika Axis";
-  src: url("/fonts/KomikaAxis.woff2") format("woff2");
-  font-display: swap;
-
-
-
-
-}
-
-@font-face {
-  font-family: "Urban Heroes";
-  src: url("/fonts/UrbanHeroes.woff2") format("woff2");
-  font-display: swap;
-
-
-
-
-}
-
-@font-face {
-  font-family: "Blackrush";
-  src: url("/fonts/Blackrush.woff2") format("woff2");
-  font-display: swap;
-
-
-
-
-}
-
-@font-face {
-  font-family: "KG Red Hands";
-  src: url("/fonts/KGRedHands.woff2") format("woff2");
-  font-display: swap;
-
-
-
-
-}
-
-@font-face {
-  font-family: "Traffic";
-  src: url("/fonts/Traffic.woff2") format("woff2");
-  font-display: swap;
-
-
-
-
-}
-
-@font-face {
-  font-family: "Hackney";
-  src: url("/fonts/Hackney.woff2") format("woff2");
-  font-display: swap;
-
-
-
-
-}
-
-@font-face {
-  font-family: "Kong";
-  src: url("/fonts/Kong.woff2") format("woff2");
-  font-display: swap;
-
-
-
-
+  --font-komika: var(--nf-komika), sans-serif;
+  --font-subtitle: var(--nf-blackrush), cursive;
+  --font-body: var(--nf-kgred), cursive;
+  --font-brush: var(--nf-hackney), sans-serif;
+  --font-humingson: var(--nf-kong), sans-serif;
+  --font-traffic: var(--nf-traffic), sans-serif;
 }
 
 html {
