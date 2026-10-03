@@ -1,26 +1,214 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-neon: #ff2d78;
+  --color-neon-soft: #ff7aae;
+  --font-sans: var(--font-sans);
+  --font-serif: var(--font-serif);
+  --font-display: "Urban Heroes", sans-serif;
+  --font-komika: "Komika Axis", sans-serif;
+  --font-subtitle: "Blackrush", cursive;
+  --font-body: "KG Red Hands", cursive;
+  --font-brush: "Hackney", sans-serif;
+  --font-humingson: "Kong", sans-serif;
+  --font-traffic: "Traffic", sans-serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+@font-face {
+  font-family: "Komika Axis";
+  src: url("/fonts/KomikaAxis.ttf") format("truetype");
+  font-display: swap;
+
+
+
+
+}
+
+@font-face {
+  font-family: "Urban Heroes";
+  src: url("/fonts/UrbanHeroes.ttf") format("truetype");
+  font-display: swap;
+
+
+
+
+}
+
+@font-face {
+  font-family: "Blackrush";
+  src: url("/fonts/Blackrush.ttf") format("truetype");
+  font-display: swap;
+
+
+
+
+}
+
+@font-face {
+  font-family: "KG Red Hands";
+  src: url("/fonts/KGRedHands.ttf") format("truetype");
+  font-display: swap;
+
+
+
+
+}
+
+@font-face {
+  font-family: "Traffic";
+  src: url("/fonts/Traffic.ttf") format("truetype");
+  font-display: swap;
+
+
+
+
+}
+
+@font-face {
+  font-family: "Hackney";
+  src: url("/fonts/Hackney.ttf") format("truetype");
+  font-display: swap;
+
+
+
+
+}
+
+@font-face {
+  font-family: "Humingson";
+  src: url("/fonts/Humingson.ttf") format("truetype");
+  font-display: swap;
+
+
+
+
+}
+
+@font-face {
+  font-family: "Kong";
+  src: url("/fonts/Kong.ttf") format("truetype");
+  font-display: swap;
+
+
+
+
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans), sans-serif;
+}
+
+@keyframes sign-sway {
+  0%, 100% { transform: rotate(-3deg) scale(1); }
+  50% { transform: rotate(-3deg) scale(1.06); }
+}
+
+.animate-sign {
+  animation: sign-sway 2.4s ease-in-out infinite;
+}
+
+/* En móvil se desactiva el balanceo: las animaciones infinitas dentro de un
+   header `fixed` hacen que la GPU pierda la capa y el header "se mueva" con el scroll. */
+@media (max-width: 639px) {
+  .animate-sign {
+    animation: none;
+  }
+}
+
+.animate-sign:hover {
+  animation: none;
+  transform: rotate(0deg) scale(1.03);
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.reveal-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0.2; transform: scale(0.7) translateY(0); }
+  50% { opacity: 1; transform: scale(1.3) translateY(-14px); }
+}
+
+.star-dot {
+  animation: twinkle 3s ease-in-out infinite;
+}
+
+@keyframes whatsapp-wave {
+  0% { transform: scale(1); opacity: 0.6; }
+  100% { transform: scale(2.2); opacity: 0; }
+}
+
+.whatsapp-wave {
+  animation: whatsapp-wave 1.8s ease-out infinite;
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  animation: marquee 30s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+@keyframes scroll-left {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes scroll-right {
+  0% { transform: translateX(-50%); }
+  100% { transform: translateX(0); }
+}
+
+.animate-scroll-left {
+  animation: scroll-left 40s linear infinite;
+}
+
+.animate-scroll-right {
+  animation: scroll-right 40s linear infinite;
+}
+
+/* En móvil la pista es larguísima (fotos duplicadas): se acelera para que no se vea lento. */
+@media (max-width: 767px) {
+  .animate-scroll-left,
+  .animate-scroll-right {
+    animation-duration: 22s;
+  }
+}
+
+.title-glow {
+  text-shadow: 0 4px 0 rgba(249, 115, 22, 0.6);
+}
+
+.subtitle-stroke {
+  background: linear-gradient(to bottom, #fbbf24, #ea580c);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.nav-logo-text {
+  background: linear-gradient(to bottom, #ff9e3d, #ff2d78);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  padding: 0.2em 0.15em;
+  margin: -0.2em -0.15em;
+  line-height: 1.2;
 }
