@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export default function Hero() {
   return (
-    <div className="grid md:grid-cols-2 lg:grid-cols-[1.15fr_1fr] items-center gap-6 md:gap-10 w-full">
+    <div data-no-reveal className="grid md:grid-cols-2 lg:grid-cols-[1.15fr_1fr] items-center gap-6 md:gap-10 w-full">
       <div className="relative aspect-[4/3] md:aspect-auto md:h-[82vh] overflow-hidden lg:-mt-12 md:ml-8 rounded-md order-2 md:order-1">
         <Image src="/hero.jpg" alt="Hidden Hall Tattoo" fill className="object-cover" priority sizes="(min-width: 768px) 50vw, 100vw" />
         <div className="absolute inset-0 bg-gradient-to-l from-neutral-950 via-transparent to-transparent" />

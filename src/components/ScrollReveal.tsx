@@ -4,6 +4,10 @@ import { useEffect } from "react";
 
 export default function ScrollReveal() {
   useEffect(() => {
+    // El CSS ya fuerza opacity:1 para estos usuarios; saltar el observer evita
+    // agregar una clase inerte y observar ~130 elementos al pedo.
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
     const io = new IntersectionObserver(
       (entries) => {
         entries.forEach((e) => {

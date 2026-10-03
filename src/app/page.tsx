@@ -95,13 +95,16 @@ export default function Home() {
             <div className="absolute -inset-3 border border-amber-500/30 rounded-md" />
             <div className="absolute -inset-3 rounded-md shadow-[0_0_40px_rgba(245,158,11,0.15)]" />
             <video
-              src="/video.mp4"
               autoPlay
               muted
               loop
               playsInline
+              poster="/poster.jpg"
               className="relative w-full rounded-md border border-neutral-700 shadow-2xl shadow-black"
-            />
+            >
+              <source src="/video.webm" type="video/webm" />
+              <source src="/video.mp4" type="video/mp4" />
+            </video>
           </div>
           <div>
             <p className="hidden sm:block font-subtitle subtitle-stroke text-2xl sm:text-5xl lg:text-6xl mb-4 sm:mb-6 text-center leading-tight sm:leading-none">

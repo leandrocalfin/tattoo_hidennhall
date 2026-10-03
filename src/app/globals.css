@@ -16,7 +16,7 @@
 
 @font-face {
   font-family: "Komika Axis";
-  src: url("/fonts/KomikaAxis.ttf") format("truetype");
+  src: url("/fonts/KomikaAxis.woff2") format("woff2");
   font-display: swap;
 
 
@@ -26,7 +26,7 @@
 
 @font-face {
   font-family: "Urban Heroes";
-  src: url("/fonts/UrbanHeroes.ttf") format("truetype");
+  src: url("/fonts/UrbanHeroes.woff2") format("woff2");
   font-display: swap;
 
 
@@ -36,7 +36,7 @@
 
 @font-face {
   font-family: "Blackrush";
-  src: url("/fonts/Blackrush.ttf") format("truetype");
+  src: url("/fonts/Blackrush.woff2") format("woff2");
   font-display: swap;
 
 
@@ -46,7 +46,7 @@
 
 @font-face {
   font-family: "KG Red Hands";
-  src: url("/fonts/KGRedHands.ttf") format("truetype");
+  src: url("/fonts/KGRedHands.woff2") format("woff2");
   font-display: swap;
 
 
@@ -56,7 +56,7 @@
 
 @font-face {
   font-family: "Traffic";
-  src: url("/fonts/Traffic.ttf") format("truetype");
+  src: url("/fonts/Traffic.woff2") format("woff2");
   font-display: swap;
 
 
@@ -66,17 +66,7 @@
 
 @font-face {
   font-family: "Hackney";
-  src: url("/fonts/Hackney.ttf") format("truetype");
-  font-display: swap;
-
-
-
-
-}
-
-@font-face {
-  font-family: "Humingson";
-  src: url("/fonts/Humingson.ttf") format("truetype");
+  src: url("/fonts/Hackney.woff2") format("woff2");
   font-display: swap;
 
 
@@ -86,7 +76,7 @@
 
 @font-face {
   font-family: "Kong";
-  src: url("/fonts/Kong.ttf") format("truetype");
+  src: url("/fonts/Kong.woff2") format("woff2");
   font-display: swap;
 
 
@@ -211,4 +201,27 @@ body {
   padding: 0.2em 0.15em;
   margin: -0.2em -0.15em;
   line-height: 1.2;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .animate-sign,
+  .star-dot,
+  .whatsapp-wave,
+  .animate-marquee,
+  .animate-scroll-left,
+  .animate-scroll-right {
+    animation: none;
+  }
+
+  /* Sin esto el contenido queda invisible si ScrollReveal no corre:
+     .reveal arranca en opacity 0 y solo .reveal-in lo revela. */
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
 }

@@ -1,11 +1,11 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 
 const images = Array.from({ length: 98 }, (_, i) => {
   const num = i + 1;
-  const ext = [23, 26, 31, 38].includes(num) ? ".heic" : ".jpg";
+  const ext = [23, 26, 31, 38, 76, 77, 78, 79, 83, 84, 85, 87, 93, 95].includes(num) ? ".heic" : ".jpg";
   return `/galeria/${num}${ext}`;
 });
 

@@ -17,7 +17,7 @@ const sans = Cormorant_Garamond({
 
 export const metadata: Metadata = {
   title: "Hiddenhall Tattoo — Estudio de Tatuajes",
-  description: "Arte en tu piel. Estudio de tatuajes en Ciudad de México.",
+  description: "Arte en tu piel. Estudio de tatuajes en Río Gallegos.",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
