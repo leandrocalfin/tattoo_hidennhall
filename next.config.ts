@@ -37,13 +37,6 @@ const nextConfig: NextConfig = {
   async headers() {
     return [
       { source: "/(.*)", headers: securityHeaders },
-      {
-        // Cache-Control es aditivo: /fonts/ matchea tambien /(.*), asi que sigue
-        // recibiendo los headers de seguridad. Al ser inmutable, cambiar un
-        // .woff2 obliga a renombrarlo (p. ej. Kong.v2.woff2).
-        source: "/fonts/(.*)",
-        headers: [{ key: "Cache-Control", value: "public, max-age=31536000, immutable" }],
-      },
     ];
   },
 };
