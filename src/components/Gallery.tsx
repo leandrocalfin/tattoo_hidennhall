@@ -50,19 +50,19 @@ export default function Gallery() {
 
   return (
     <>
-      <div className="relative overflow-hidden -mx-6">
+      <div className="relative overflow-hidden -mx-6 py-3">
         <div className="flex gap-3 mb-3 animate-scroll-left">
           {[...topRow, ...topRow].map((src, i) => (
             <button
               key={`top-${i}`}
               onClick={() => openLightbox(i % topRow.length)}
-              className="relative h-28 w-44 md:h-40 md:w-64 shrink-0 overflow-hidden border border-neutral-800 bg-neutral-900 group"
+              className="relative h-28 w-44 md:h-40 md:w-64 shrink-0 overflow-hidden border border-neutral-800 hover:border-amber-500/50 bg-neutral-900 cursor-pointer hover:-translate-y-2 transition-all duration-300"
             >
               <Image
                 src={src}
                 alt={`Trabajo ${i + 1}`}
                 fill
-                className="object-cover group-hover:scale-105 transition duration-500"
+                className="object-cover"
                 sizes="256px"
               />
             </button>
@@ -74,13 +74,13 @@ export default function Gallery() {
             <button
               key={`middle-${i}`}
               onClick={() => openLightbox(i % middleRow.length + topRow.length)}
-              className="relative h-28 w-44 md:h-40 md:w-64 shrink-0 overflow-hidden border border-neutral-800 bg-neutral-900 group"
+              className="relative h-28 w-44 md:h-40 md:w-64 shrink-0 overflow-hidden border border-neutral-800 hover:border-amber-500/50 bg-neutral-900 cursor-pointer hover:-translate-y-2 transition-all duration-300"
             >
               <Image
                 src={src}
                 alt={`Trabajo ${i + 1}`}
                 fill
-                className="object-cover group-hover:scale-105 transition duration-500"
+                className="object-cover"
                 sizes="256px"
               />
             </button>
@@ -92,13 +92,13 @@ export default function Gallery() {
             <button
               key={`bottom-${i}`}
               onClick={() => openLightbox(i % bottomRow.length + topRow.length + middleRow.length)}
-              className="relative h-28 w-44 md:h-40 md:w-64 shrink-0 overflow-hidden border border-neutral-800 bg-neutral-900 group"
+              className="relative h-28 w-44 md:h-40 md:w-64 shrink-0 overflow-hidden border border-neutral-800 hover:border-amber-500/50 bg-neutral-900 cursor-pointer hover:-translate-y-2 transition-all duration-300"
             >
               <Image
                 src={src}
                 alt={`Trabajo ${i + 1}`}
                 fill
-                className="object-cover group-hover:scale-105 transition duration-500"
+                className="object-cover"
                 sizes="256px"
               />
             </button>
@@ -108,12 +108,12 @@ export default function Gallery() {
 
       {isOpen && (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/90"
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 cursor-pointer"
           onClick={closeLightbox}
         >
           <button
             onClick={closeLightbox}
-            className="absolute top-6 right-6 text-white/70 hover:text-white transition z-10"
+            className="absolute top-6 right-6 text-white/70 hover:text-white transition z-10 cursor-pointer"
           >
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" className="h-8 w-8">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -136,7 +136,7 @@ export default function Gallery() {
 
             <button
               onClick={(e) => { e.stopPropagation(); goToPrev(); }}
-              className="absolute left-2 top-1/2 -translate-y-1/2 text-white/70 hover:text-white transition z-10"
+              className="absolute left-2 top-1/2 -translate-y-1/2 text-white/70 hover:text-white transition z-10 cursor-pointer"
             >
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" className="h-10 w-10">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
@@ -145,7 +145,7 @@ export default function Gallery() {
 
             <button
               onClick={(e) => { e.stopPropagation(); goToNext(); }}
-              className="absolute right-2 top-1/2 -translate-y-1/2 text-white/70 hover:text-white transition z-10"
+              className="absolute right-2 top-1/2 -translate-y-1/2 text-white/70 hover:text-white transition z-10 cursor-pointer"
             >
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" className="h-10 w-10">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />

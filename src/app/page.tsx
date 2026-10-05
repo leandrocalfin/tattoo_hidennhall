@@ -215,8 +215,39 @@ export default function Home() {
           width={900}
           height={900}
           data-no-reveal
+          aria-hidden
           className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 opacity-[0.03] pointer-events-none"
         />
+        <div
+          data-no-reveal
+          aria-hidden
+          className="absolute -left-16 md:-left-8 top-1/2 -translate-y-1/2 opacity-[0.07] pointer-events-none select-none"
+        >
+          <Image
+            src="/maquinaTattoo.png"
+            alt=""
+            width={380}
+            height={380}
+            data-no-reveal
+            aria-hidden
+            className="animate-watermark w-48 md:w-72 lg:w-80 h-auto [--wm-rot:-12deg]"
+          />
+        </div>
+        <div
+          data-no-reveal
+          aria-hidden
+          className="absolute -right-16 md:-right-8 top-1/2 -translate-y-1/2 opacity-[0.07] pointer-events-none select-none"
+        >
+          <Image
+            src="/maquinaTattoo.png"
+            alt=""
+            width={380}
+            height={380}
+            data-no-reveal
+            aria-hidden
+            className="animate-watermark animate-watermark-delay w-48 md:w-72 lg:w-80 h-auto scale-x-[-1] [--wm-rot:12deg]"
+          />
+        </div>
         <h2 className={SECTION_TITLE}>Artistas</h2>
         <p className="font-body text-neutral-400 text-center max-w-2xl mx-auto mb-12">
           Conocé a los tatuadores de Hiddenhall, cada uno especializado en estilos distintivos y con una trayectoria impecable.

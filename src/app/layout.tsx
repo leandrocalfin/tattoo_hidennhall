@@ -3,6 +3,7 @@ import { Cormorant_Garamond } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.css";
 import ScrollReveal from "@/components/ScrollReveal";
+import IntroLoader from "@/components/IntroLoader";
 
 const serif = Cormorant_Garamond({
   variable: "--font-serif",
@@ -53,7 +54,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="es"
       className={`${serif.variable} ${sans.variable} ${komika.variable} ${blackrush.variable} ${kgred.variable} ${hackney.variable} ${kong.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-neutral-950 text-neutral-200 overflow-x-clip">{children}<ScrollReveal /></body>
+      <body className="min-h-full flex flex-col bg-neutral-950 text-neutral-200 overflow-x-clip"><IntroLoader />{children}<ScrollReveal /></body>
     </html>
   );
 }

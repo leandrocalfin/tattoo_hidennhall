@@ -53,6 +53,58 @@ body {
   transform: translateY(0);
 }
 
+/* Entrada del hero (load): mismo lenguaje que .reveal pero disparada al cargar,
+   con delays escalonados para que no aparezca todo de golpe.
+   Se activan recién cuando el IntroLoader termina (body.intro-done),
+   así la animación no corre tapada detrás del splash. */
+@keyframes hero-enter {
+  from { opacity: 0; transform: translateY(28px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes hero-zoom {
+  from { transform: scale(1.08); }
+  to { transform: scale(1); }
+}
+
+.hero-enter {
+  opacity: 0;
+}
+
+body.intro-done .hero-enter {
+  animation: hero-enter 0.9s ease forwards;
+}
+
+body.intro-done .hero-enter-1 { animation-delay: 0.05s; }
+body.intro-done .hero-enter-2 { animation-delay: 0.15s; }
+body.intro-done .hero-enter-3 { animation-delay: 0.3s; }
+body.intro-done .hero-enter-4 { animation-delay: 0.45s; }
+body.intro-done .hero-enter-5 { animation-delay: 0.6s; }
+body.intro-done .hero-enter-6 { animation-delay: 0.75s; }
+
+.hero-zoom {
+  transform: scale(1.08);
+}
+
+body.intro-done .hero-zoom {
+  animation: hero-zoom 1.6s ease-out forwards;
+}
+
+/* Texto del splash: brillo barrido sobre la palabra (sin puntos suspensivos) */
+@keyframes intro-shimmer {
+  0% { background-position: 200% center; }
+  100% { background-position: -200% center; }
+}
+
+.intro-text {
+  background: linear-gradient(110deg, #fbbf24 20%, #fff7e0 40%, #ea580c 60%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: intro-shimmer 2.2s linear infinite;
+}
+
 @keyframes twinkle {
   0%, 100% { opacity: 0.2; transform: scale(0.7) translateY(0); }
   50% { opacity: 1; transform: scale(1.3) translateY(-14px); }
@@ -110,6 +162,20 @@ body {
   }
 }
 
+@keyframes watermark-float {
+  0%, 100% { transform: translateY(12px) rotate(var(--wm-rot, -12deg)) scale(1); }
+  50% { transform: translateY(-22px) rotate(var(--wm-rot, -12deg)) scale(1.04); }
+}
+
+.animate-watermark {
+  animation: watermark-float 6s ease-in-out infinite;
+  filter: drop-shadow(0 0 25px rgba(245, 158, 11, 0.15));
+}
+
+.animate-watermark-delay {
+  animation-delay: -3.5s;
+}
+
 .title-glow {
   text-shadow: 0 4px 0 rgba(249, 115, 22, 0.6);
 }
@@ -139,6 +205,10 @@ body {
   .animate-sign,
   .star-dot,
   .whatsapp-wave,
+  .animate-watermark,
+  .intro-text,
+  .hero-enter,
+  .hero-zoom,
   .animate-marquee,
   .animate-scroll-left,
   .animate-scroll-right {
@@ -151,5 +221,18 @@ body {
     opacity: 1;
     transform: none;
     transition: none;
+  }
+
+  /* Lo mismo para la entrada del hero: sin animación debe verse directo. */
+  .hero-enter,
+  body.intro-done .hero-enter {
+    opacity: 1;
+    animation: none;
+  }
+
+  .hero-zoom,
+  body.intro-done .hero-zoom {
+    transform: none;
+    animation: none;
   }
 }
