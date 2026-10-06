@@ -1,16 +1,28 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { usePathname } from "next/navigation";
 import Image from "next/image";
 
 export default function IntroLoader() {
   const [fading, setFading] = useState(false);
   const [gone, setGone] = useState(false);
+  const shownOnce = useRef(false);
+  const pathname = usePathname();
+  const isHome = pathname === "/";
 
   useEffect(() => {
+    if (!isHome) return;
+    // Mostrar solo una vez por carga completa de la app; navegar a Insumos
+    // y volver no lo repite (isHome cambia pero el componente no se desmonta).
+    if (shownOnce.current) {
+      document.body.classList.add("intro-done");
+      setGone(true);
+      return;
+    }
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const visibleMs = reduced ? 300 : 2300;
-    const fadeMs = reduced ? 0 : 600;
+    const visibleMs = reduced ? 300 : 1800;
+    const fadeMs = reduced ? 0 : 500;
 
     // Bloquea el scroll mientras está el splash
     const prevOverflow = document.body.style.overflow;
@@ -22,6 +34,7 @@ export default function IntroLoader() {
     }, visibleMs);
     const t2 = window.setTimeout(() => {
       setGone(true);
+      shownOnce.current = true;
       document.body.style.overflow = prevOverflow;
     }, visibleMs + fadeMs);
 
@@ -30,9 +43,9 @@ export default function IntroLoader() {
       window.clearTimeout(t2);
       document.body.style.overflow = prevOverflow;
     };
-  }, []);
+  }, [isHome]);
 
-  if (gone) return null;
+  if (!isHome || gone) return null;
 
   return (
     <div

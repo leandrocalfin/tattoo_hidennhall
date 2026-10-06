@@ -16,6 +16,11 @@ html {
   scroll-behavior: smooth;
 }
 
+html.hh-freeze-scroll,
+html.hh-freeze-scroll * {
+  scroll-behavior: auto !important;
+}
+
 body {
   font-family: var(--font-sans), sans-serif;
 }

@@ -1,8 +1,11 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { usePathname, useRouter } from "next/navigation";
+import Link from "next/link";
 import Image from "next/image";
 import Starfield from "@/components/Starfield";
+import { freezeScrollBehavior } from "@/components/PageVeil";
 
 const links = [
   { id: "inicio", label: "Inicio" },
@@ -17,10 +20,15 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [active, setActive] = useState("inicio");
   const [open, setOpen] = useState(false);
+  const pathname = usePathname();
+  const router = useRouter();
+  const isInsumos = pathname === "/insumos";
+  const currentActive = isInsumos ? "insumos" : active;
 
   useEffect(() => {
     const onScroll = () => {
       setScrolled(window.scrollY > 50);
+      if (isInsumos) return;
       let current = "inicio";
       for (const { id } of links) {
         const el = document.getElementById(id);
@@ -31,7 +39,7 @@ export default function Navbar() {
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+  }, [isInsumos]);
 
   // En móvil el menú se cierra con Escape o al pasar a desktop.
   // No se bloquea el scroll del fondo para no interferir con el scroll suave de los links.
@@ -58,9 +66,34 @@ export default function Navbar() {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
+  // Volver a la home tapado por el velo. Evita el scroll raro que deja la
+  // navegación con hash (`/#inicio`) a Next/browser; el velo fija el tope.
+  const goHomeTop = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    setOpen(false);
+    freezeScrollBehavior(600);
+    router.push("/");
+  };
+
+  // Ir a Insumos sin deslizamiento: la página destino siempre aparece desde arriba.
+  const goInsumos = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    setOpen(false);
+    if (isInsumos) {
+      if (window.scrollY === 0) return;
+      freezeScrollBehavior(600);
+      window.scrollTo({ top: 0, behavior: "auto" });
+      return;
+    }
+    // Scroll top lo hace Next al navegar; freeze evita el deslizamiento suave.
+    // No saltar antes en la página vieja: se vería un "pantallaso" de su tope.
+    freezeScrollBehavior(600);
+    router.push("/insumos");
+  };
+
   const linkClass = (id: string) =>
     `inline-block hover:scale-105 hover:text-amber-500 transition-all duration-200 ${
-      active === id ? "text-amber-500" : "text-white"
+      currentActive === id ? "text-amber-500" : "text-white"
     }`;
 
   return (
@@ -79,21 +112,62 @@ export default function Navbar() {
           <Starfield count={50} />
         </div>
         <div id="nav-row" className="relative flex items-center justify-between gap-2 px-4 py-3 sm:px-6 sm:py-4">
-        <a href="#inicio" aria-label="Inicio" onClick={goTop} className="relative z-10 shrink-0">
-          <Image id="nav-logo" src="/logo.png" alt="Hiddenhall Tattoo" width={82} height={82} className="w-10 h-auto sm:w-[82px] sm:ml-4 md:ml-20 relative" />
-        </a>
+        {isInsumos ? (
+          <Link href="/" aria-label="Inicio" onClick={goHomeTop} className="relative z-10 shrink-0">
+            <Image id="nav-logo" src="/logo.png" alt="Hiddenhall Tattoo" width={82} height={82} className="w-10 h-auto sm:w-[82px] sm:ml-4 md:ml-20 relative" />
+          </Link>
+        ) : (
+          <a href="#inicio" aria-label="Inicio" onClick={goTop} className="relative z-10 shrink-0">
+            <Image id="nav-logo" src="/logo.png" alt="Hiddenhall Tattoo" width={82} height={82} className="w-10 h-auto sm:w-[82px] sm:ml-4 md:ml-20 relative" />
+          </a>
+        )}
 
         <nav className="absolute left-1/2 -translate-x-1/2 hidden lg:flex gap-4 text-3xl uppercase tracking-normal font-brush">
-          {links.map(({ id, label }) => (
-            <a
-              key={id}
-              href={`#${id}`}
-              onClick={id === "inicio" ? goTop : undefined}
-              className={linkClass(id)}
-            >
-              {label}
-            </a>
-          ))}
+          {links.slice(0, 4).map(({ id, label }) =>
+            isInsumos ? (
+              <Link
+                key={id}
+                href={`/#${id}`}
+                onClick={id === "inicio" ? goHomeTop : undefined}
+                className={linkClass(id)}
+              >
+                {label}
+              </Link>
+            ) : (
+              <a
+                key={id}
+                href={`#${id}`}
+                onClick={id === "inicio" ? goTop : undefined}
+                className={linkClass(id)}
+              >
+                {label}
+              </a>
+            )
+          )}
+          <Link href="/insumos" onClick={goInsumos} className={linkClass("insumos")}>
+            Insumos
+          </Link>
+          {links.slice(4).map(({ id, label }) =>
+            isInsumos ? (
+              <Link
+                key={id}
+                href={`/#${id}`}
+                onClick={id === "inicio" ? goHomeTop : undefined}
+                className={linkClass(id)}
+              >
+                {label}
+              </Link>
+            ) : (
+              <a
+                key={id}
+                href={`#${id}`}
+                onClick={id === "inicio" ? goTop : undefined}
+                className={linkClass(id)}
+              >
+                {label}
+              </a>
+            )
+          )}
         </nav>
 
         <div id="nav-right" className="relative z-10 ml-auto flex shrink-0 items-center gap-2 sm:gap-4">
@@ -124,19 +198,67 @@ export default function Navbar() {
 
       {open && (
         <nav id="menu-movil" className="relative lg:hidden bg-neutral-950 sm:bg-neutral-950/95 sm:backdrop-blur-md border-t border-neutral-900 px-6 py-3 flex flex-col gap-2 text-lg uppercase tracking-normal font-brush items-center text-center max-h-[calc(100dvh-5rem)] overflow-y-auto">
-          {links.map(({ id, label }) => (
-            <a
-              key={id}
-              href={`#${id}`}
-              onClick={(e) => {
-                if (id === "inicio") { goTop(e); return; }
-                setOpen(false);
-              }}
-              className={linkClass(id)}
-            >
-              {label}
-            </a>
-          ))}
+          {links.slice(0, 4).map(({ id, label }) =>
+            isInsumos ? (
+              <Link
+                key={id}
+                href={`/#${id}`}
+                onClick={(e) => {
+                  if (id === "inicio") { goHomeTop(e); return; }
+                  setOpen(false);
+                }}
+                className={linkClass(id)}
+              >
+                {label}
+              </Link>
+            ) : (
+              <a
+                key={id}
+                href={`#${id}`}
+                onClick={(e) => {
+                  if (id === "inicio") { goTop(e); return; }
+                  setOpen(false);
+                }}
+                className={linkClass(id)}
+              >
+                {label}
+              </a>
+            )
+          )}
+          <Link
+            href="/insumos"
+            onClick={goInsumos}
+            className={linkClass("insumos")}
+          >
+            Insumos
+          </Link>
+          {links.slice(4).map(({ id, label }) =>
+            isInsumos ? (
+              <Link
+                key={id}
+                href={`/#${id}`}
+                onClick={(e) => {
+                  if (id === "inicio") { goHomeTop(e); return; }
+                  setOpen(false);
+                }}
+                className={linkClass(id)}
+              >
+                {label}
+              </Link>
+            ) : (
+              <a
+                key={id}
+                href={`#${id}`}
+                onClick={(e) => {
+                  if (id === "inicio") { goTop(e); return; }
+                  setOpen(false);
+                }}
+                className={linkClass(id)}
+              >
+                {label}
+              </a>
+            )
+          )}
           </nav>
         )}
       </header>

@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import Reviews from "@/components/Reviews";
@@ -90,7 +91,7 @@ export default function Home() {
 
       <section id="estudio" className="scroll-mt-8 px-6 py-20 max-w-5xl mx-auto">
         <h2 className={SECTION_TITLE}>Nuestro Espacio</h2>
-        <p className="sm:hidden font-subtitle subtitle-stroke text-3xl mb-8 text-center leading-tight max-w-md mx-auto">
+        <p className="sm:hidden font-subtitle subtitle-stroke text-4xl mb-8 text-center leading-tight max-w-md mx-auto">
           Transformamos tus ideas y emociones en auténticas obras de arte.
         </p>
         <div className="grid grid-cols-2 sm:grid-cols-[auto_minmax(0,30rem)] gap-4 sm:gap-10 items-center sm:items-start justify-center">
@@ -113,7 +114,7 @@ export default function Home() {
             <p className="hidden sm:block font-subtitle subtitle-stroke text-2xl sm:text-5xl lg:text-6xl mb-4 sm:mb-6 text-center leading-tight sm:leading-none">
               Transformamos tus ideas y emociones en auténticas obras de arte.
             </p>
-            <p className="font-body text-neutral-400 text-sm sm:text-sm lg:text-lg leading-relaxed text-justify">
+            <p className="font-body text-neutral-400 text-xs sm:text-sm lg:text-lg leading-relaxed text-justify">
               Bienvenidos a Hidden Hall Tattoo Studio, un refugio dedicado al arte y la creatividad
               en la piel. Nuestro objetivo es brindarte una experiencia personalizada en un ambiente
               profesional y único, donde cada trazo y cada línea reflejan nuestra pasión por
@@ -188,6 +189,54 @@ export default function Home() {
               </a>
             </div>
         <Reviews />
+      </section>
+
+      <section aria-label="Insumos PalaInk" className="border-y border-neutral-800 bg-neutral-900/50 px-6 py-10">
+        <div className="mx-auto flex max-w-5xl flex-col items-center gap-5 text-center sm:flex-row sm:gap-8 sm:text-left">
+          <Image
+            src="/palaInk_Insumos.png"
+            alt="PalaInk Insumos"
+            width={320}
+            height={200}
+            className="h-auto w-44 shrink-0 sm:w-52"
+          />
+          <div className="flex-1">
+            <p className="font-brush text-xl uppercase tracking-widest text-amber-500">
+              En el studio
+            </p>
+            <h2 className="mt-1 font-brush text-3xl text-neutral-100 sm:text-4xl">
+              Nuestros insumos son de{" "}
+              <a
+                href="https://www.instagram.com/palaink_insumos"
+                target="_blank"
+                rel="noreferrer"
+                className="text-amber-500 hover:text-amber-400 transition"
+              >
+                @palaink_insumos
+              </a>
+            </h2>
+            <p className="mt-2 font-body text-sm text-neutral-400 sm:text-base">
+              Venta de insumos para tattoo dentro de Hidden Hall. Se hacen
+              envíos a todo el país.
+            </p>
+            <div className="mt-4 flex flex-wrap justify-center gap-3 sm:justify-start">
+              <Link
+                href="/insumos"
+                className="inline-flex items-center px-5 py-2.5 bg-neutral-900 text-amber-500 uppercase tracking-widest text-base rounded-md font-brush border border-amber-500 hover:scale-105 hover:bg-amber-500 hover:text-neutral-950 transition-all duration-300"
+              >
+                Ver insumos
+              </Link>
+              <a
+                href="https://www.instagram.com/palaink_insumos"
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center px-5 py-2.5 bg-neutral-900 text-amber-500 uppercase tracking-widest text-base rounded-md font-brush border border-amber-500 hover:scale-105 hover:bg-amber-500 hover:text-neutral-950 transition-all duration-300"
+              >
+                Instagram
+              </a>
+            </div>
+          </div>
+        </div>
       </section>
 
       <section id="servicios" className="scroll-mt-8 px-6 py-20 max-w-7xl mx-auto">
